@@ -65,7 +65,7 @@ while True:
         else:
             count += 1  # 若count > 3则视为出错了
 
-        if count > 3:
+        if count == 4:
             if dict[number][0] < dict[number][1]:
                 pyautogui.moveTo(229, 675, duration=0)      # 画笔区域，需修改（同上）
                 pyautogui.drag(100, 50, 0.1, button='left')
@@ -74,15 +74,23 @@ while True:
                 pyautogui.moveTo(229, 675, duration=0)
                 pyautogui.drag(-100, 50, 0.1, button='left')
                 pyautogui.drag(150, 70, 0.1, button='left')
+            if count == 8:
+                if dict[number][0] > dict[number][1]:
+                    pyautogui.moveTo(229, 675, duration=0)  # 画笔区域，需修改（同上）
+                    pyautogui.drag(100, 50, 0.1, button='left')
+                    pyautogui.drag(-150, 70, 0.1, button='left')
+                else:
+                    pyautogui.moveTo(229, 675, duration=0)
+                    pyautogui.drag(-100, 50, 0.1, button='left')
+                    pyautogui.drag(150, 70, 0.1, button='left')
         if number >= NUMBER_OF_PROBLEM:
-            count = 0
             lock = 1
     except Exception as e:
         errorCount += 1
-        if errorCount > 100 and lock == 1:
-            pyautogui.moveTo(274, 828, duration=2)  # 按钮区域，需修改（开心收下）
+        if lock == 1:
+            pyautogui.moveTo(274, 828, duration=6)  # 按钮区域，需修改（开心收下）
             pyautogui.click()
-            pyautogui.moveTo(408, 970, duration=2)  # 按钮区域，需修改（继续）
+            pyautogui.moveTo(408, 970, duration=1)  # 按钮区域，需修改（继续）
             pyautogui.click()
             pyautogui.moveTo(283, 906, duration=2)  # 按钮区域，需修改（再来一局）
             pyautogui.click()
